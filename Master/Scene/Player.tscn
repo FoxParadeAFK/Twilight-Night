@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbpbh2kf5ru7s"]
+
+[ext_resource type="Script" path="res://Script/State Machine/Template/Player/Player.gd" id="1_07oso"]
+
+[sub_resource type="Animation" id="Animation_6xgxe"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_0tx7l"]
+resource_name = "Move"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njfjn"]
+_data = {
+"Idle": SubResource("Animation_6xgxe"),
+"Move": SubResource("Animation_0tx7l")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_v6arg"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_07oso")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_njfjn")
+}
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(10, 10)
+mesh = SubResource("BoxMesh_v6arg")
