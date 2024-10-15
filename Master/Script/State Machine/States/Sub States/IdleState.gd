@@ -8,6 +8,10 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
   playerData = _playerData
   stateMachine = _stateMachine
 
+func Enter() -> void:
+  super.Enter()
+  player.SetVelocityX(0)
+
 func Update() -> void:
   super.Update()
 

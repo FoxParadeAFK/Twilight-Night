@@ -10,5 +10,8 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 
 func Update():
   super.Update()
+  
+  player.CheckIfShouldFlip(xInput)
+  player.SetVelocityX(300 * xInput)
 
   if (player.inputManager.normXInput == 0): stateMachine.ChangeState(player.idleState)
