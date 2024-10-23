@@ -35,6 +35,8 @@ func _process(_delta: float) -> void:
 	stateMachine.currentState.Update(_delta)
 	inputManager.Update()
 
+	print(inAirState.amountOfJumpsLeft)
+
 
 func _physics_process(_delta: float) -> void:
 	stateMachine.currentState.PhysicsUpdate(_delta)

@@ -9,18 +9,16 @@ var normXInput : int
 var jumpInput : bool
 
 
-func Update():
+func Update() -> void:
 	OnMoveInput()
 	OnJumpInput()
 
-func OnMoveInput():
+func OnMoveInput() -> void:
 	rawMovementInput = Input.get_axis("Move_Left", "Move_Right")
 	normXInput = roundi(rawMovementInput)
 
-func OnJumpInput():
+func OnJumpInput() -> void:
 	if (Input.is_action_just_pressed("Jump")):
 		jumpInput = true;
 
-	if (Input.is_action_just_released("Jump")):
-		jumpInput = false;
-
+func UseJumpInput() -> void: jumpInput = false
