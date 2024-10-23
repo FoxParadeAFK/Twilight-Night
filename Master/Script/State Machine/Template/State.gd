@@ -7,6 +7,8 @@ var player : Player
 var playerData : PlayerData
 var stateMachine : StateMachine
 
+var isAnimationFinished : bool
+
 func _init(_animationName : String, _player : Player, _playerData : PlayerData, _stateMachine : StateMachine):
 	animationName = _animationName
 	player = _player
@@ -15,16 +17,20 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 
 func Enter() -> void:
 	print("Current State => %s " % animationName)
-	player.animationPlayer.play(animationName)
-
+	if (player.animationPlayer.current_animation != animationName): 
+		player.animationPlayer.play(animationName)
+	isAnimationFinished = false
 
 func Exit() -> void: pass
 
-func Update() -> void:
+func Update(_delta : float) -> void:
 	DoCheck()
 
-func PhysicsUpdate() -> void: pass
+func PhysicsUpdate(_delta : float) -> void: pass
 
 func DoCheck() -> void: pass
+
+func AnimationFinishedTrigger() -> void: 
+	isAnimationFinished = true
 
 

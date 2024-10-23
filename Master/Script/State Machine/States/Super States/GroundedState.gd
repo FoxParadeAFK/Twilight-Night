@@ -10,8 +10,12 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
   playerData = _playerData
   stateMachine = _stateMachine
 
-func Update():
+func Update(_delta : float):
+  super.Update(_delta)
+  
   xInput = player.inputManager.normXInput
 
-  super.Update()
+  if (!player.CheckIfTouchingGround()): stateMachine.ChangeState(player.inAirState)
+  if (player.inputManager.jumpInput): stateMachine.ChangeState(player.jumpState)
+
 

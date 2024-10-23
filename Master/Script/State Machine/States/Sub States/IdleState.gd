@@ -12,7 +12,10 @@ func Enter() -> void:
   super.Enter()
   player.SetVelocityX(0)
 
-func Update() -> void:
-  super.Update()
+func Update(_delta : float) -> void:
+  super.Update(_delta)
 
   if (player.inputManager.normXInput != 0): stateMachine.ChangeState(player.moveState)
+
+func PhysicsUpdate(_delta : float) -> void:
+  super.PhysicsUpdate(_delta) 
