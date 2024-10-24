@@ -15,7 +15,8 @@ func Enter() -> void:
 func Update(_delta : float) -> void:
   super.Update(_delta)
 
-  if (player.inputManager.normXInput != 0): stateMachine.ChangeState(player.moveState)
 
 func PhysicsUpdate(_delta : float) -> void:
-  super.PhysicsUpdate(_delta) 
+  super.PhysicsUpdate(_delta)
+
+  if (xInput != 0): stateMachine.ChangeState(player.moveState)

@@ -9,14 +9,15 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
   stateMachine = _stateMachine
   
 
-func Update(_delta : float):
+func Update(_delta : float) -> void:
   super.Update(_delta)
 
   player.CheckIfShouldFlip(xInput)
 
-  if (player.inputManager.normXInput == 0): stateMachine.ChangeState(player.idleState)
 
-func PhysicsUpdate(_delta : float):
+func PhysicsUpdate(_delta : float) -> void:
   super.PhysicsUpdate(_delta)
 
   player.SetVelocityX(playerData.xMovementVelocity * xInput)
+
+  if (player.inputManager.normXInput == 0): stateMachine.ChangeState(player.idleState)

@@ -16,9 +16,6 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 
   amountOfJumpsLeft = amountOfJumps
 
-func Enter() -> void:
-  super.Enter()
-
 func Update(_delta : float) -> void:
   super.Update(_delta)
 
@@ -28,17 +25,20 @@ func Update(_delta : float) -> void:
   var animationFrame : float = (player.velocity.y + playerData.yJumpVelocity) / (playerData.yJumpVelocity * 2 / player.animationPlayer.current_animation_length)
   player.animationPlayer.seek(round(animationFrame), true)
 
-  if (player.CheckIfTouchingGround() && player.velocity.y < 0.01): stateMachine.ChangeState(player.landState)
-  if (jumpInput && CanJump()): stateMachine.ChangeState(player.jumpState)
 
 
 func PhysicsUpdate(_delta : float) -> void:
   super.PhysicsUpdate(_delta)
 
-  player.SetVelocityX(playerData.xMovementVelocity * xInput)
-  player.CheckIfShouldFlip(xInput)
+  if (player.CheckIfTouchingGround()): stateMachine.ChangeState(player.landState)
 
-  player.SetGravity(playerData.defaultGraity * _delta)
+  elif (jumpInput && CanJump()): stateMachine.ChangeState(player.jumpState)
+
+  else:
+    player.CheckIfShouldFlip(xInput)
+    player.SetGravity(playerData.defaultGraity * _delta)
+    player.SetVelocityX(playerData.xMovementVelocity * xInput)
+
 
 func CanJump() -> bool: return false if amountOfJumpsLeft == 0 else true
 

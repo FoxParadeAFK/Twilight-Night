@@ -17,8 +17,8 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 
 func Enter() -> void:
 	print("Current State => %s " % animationName)
-	if (player.animationPlayer.current_animation != animationName): 
-		player.animationPlayer.play(animationName)
+	player.animationPlayer.play(animationName)
+
 	isAnimationFinished = false
 
 func Exit() -> void: pass

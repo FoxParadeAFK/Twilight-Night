@@ -8,9 +8,9 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 	playerData = _playerData
 	stateMachine = _stateMachine
 
-func Update(_delta : float):
-	super.Update(_delta)
+func PhysicsUpdate(_delta : float) -> void:
+	super.PhysicsUpdate(_delta)
 
-	if (player.inputManager.normXInput != 0): stateMachine.ChangeState(player.moveState)
+	if (xInput != 0): stateMachine.ChangeState(player.moveState)
 	
-	if (isAnimationFinished && player.inputManager.normXInput == 0): stateMachine.ChangeState(player.idleState)
+	elif (isAnimationFinished && xInput == 0): stateMachine.ChangeState(player.idleState)

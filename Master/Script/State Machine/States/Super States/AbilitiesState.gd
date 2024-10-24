@@ -10,15 +10,18 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 	playerData = _playerData
 	stateMachine = _stateMachine
 
-func Enter(): 
+func Enter() -> void: 
 	super.Enter()
 
 	isAbilitiesDone = false
 
-func Update(_delta : float):
+func Update(_delta : float) -> void:
 	super.Update(_delta)
 
 	print(isAbilitiesDone)
 
-	if (isAbilitiesDone && !player.is_on_floor()): stateMachine.ChangeState(player.inAirState)
+func PhysicsUpdate(_delta : float) -> void:
+	super.PhysicsUpdate(_delta)
+
+	if (isAbilitiesDone && !player.CheckIfTouchingGround()): stateMachine.ChangeState(player.inAirState)
 
