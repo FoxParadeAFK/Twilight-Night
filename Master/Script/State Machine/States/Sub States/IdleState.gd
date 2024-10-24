@@ -19,4 +19,4 @@ func Update(_delta : float) -> void:
 func PhysicsUpdate(_delta : float) -> void:
   super.PhysicsUpdate(_delta)
 
-  if (xInput != 0): stateMachine.ChangeState(player.moveState)
+  if (xInput != 0 && !isExitingState): stateMachine.ChangeState(player.moveState)

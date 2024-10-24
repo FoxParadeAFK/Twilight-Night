@@ -8,9 +8,16 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 	playerData = _playerData
 	stateMachine = _stateMachine
 
+func Enter():
+	super.Enter()
+
 func PhysicsUpdate(_delta : float) -> void:
 	super.PhysicsUpdate(_delta)
 
-	if (xInput != 0): stateMachine.ChangeState(player.moveState)
-	
-	elif (isAnimationFinished && xInput == 0): stateMachine.ChangeState(player.idleState)
+	if (!isExitingState):
+		
+		if (xInput != 0): stateMachine.ChangeState(player.moveState)
+
+		else:
+			player.SetVelocityX(0)
+			if (isAnimationFinished): stateMachine.ChangeState(player.idleState)

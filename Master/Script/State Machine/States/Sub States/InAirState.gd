@@ -31,13 +31,13 @@ func Update(_delta : float) -> void:
   xInput = player.inputManager.normXInput  
   jumpInput = player.inputManager.jumpInput
 
-  CheckCoyoteTimer()
-
   var animationFrame : float = (player.velocity.y + playerData.yJumpVelocity) / (playerData.yJumpVelocity * 2 / player.animationPlayer.current_animation_length)
   player.animationPlayer.seek(round(animationFrame), true)
 
 func PhysicsUpdate(_delta : float) -> void:
   super.PhysicsUpdate(_delta)
+
+  CheckCoyoteTimer()
 
   if (player.CheckIfTouchingGround()): stateMachine.ChangeState(player.landState)
 

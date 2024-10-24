@@ -21,5 +21,7 @@ func Update(_delta : float) -> void:
 func PhysicsUpdate(_delta : float) -> void:
 	super.PhysicsUpdate(_delta)
 
-	if (isAbilitiesDone && !player.CheckIfTouchingGround()): stateMachine.ChangeState(player.inAirState)
+	if (isAbilitiesDone && player.CheckIfTouchingGround()): stateMachine.ChangeState(player.idleState)
+	elif (isAbilitiesDone && !player.CheckIfTouchingGround()): stateMachine.ChangeState(player.inAirState)
+
 

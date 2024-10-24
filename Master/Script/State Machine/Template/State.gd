@@ -10,6 +10,7 @@ var stateMachine : StateMachine
 var startTimeInMilliseconds : int
 
 var isAnimationFinished : bool
+var isExitingState : bool
 
 func _init(_animationName : String, _player : Player, _playerData : PlayerData, _stateMachine : StateMachine):
 	animationName = _animationName
@@ -24,8 +25,10 @@ func Enter() -> void:
 	print("?? Entered current state: %s at time %s" % [animationName, startTimeInMilliseconds])
 
 	isAnimationFinished = false
+	isExitingState = false
 
-func Exit() -> void: pass
+func Exit() -> void: 
+	isExitingState = true
 
 func Update(_delta : float) -> void:
 	pass
