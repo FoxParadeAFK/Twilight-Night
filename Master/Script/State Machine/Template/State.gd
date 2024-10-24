@@ -7,6 +7,8 @@ var player : Player
 var playerData : PlayerData
 var stateMachine : StateMachine
 
+var startTimeInMilliseconds : int
+
 var isAnimationFinished : bool
 
 func _init(_animationName : String, _player : Player, _playerData : PlayerData, _stateMachine : StateMachine):
@@ -16,17 +18,21 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 	stateMachine = _stateMachine
 
 func Enter() -> void:
-	print("Current State => %s " % animationName)
+	startTimeInMilliseconds = Time.get_ticks_msec()
 	player.animationPlayer.play(animationName)
+
+	print("?? Entered current state: %s at time %s" % [animationName, startTimeInMilliseconds])
 
 	isAnimationFinished = false
 
 func Exit() -> void: pass
 
 func Update(_delta : float) -> void:
-	DoCheck()
+	pass
 
-func PhysicsUpdate(_delta : float) -> void: pass
+func PhysicsUpdate(_delta : float) -> void: 
+	DoCheck()
+	
 
 func DoCheck() -> void: pass
 

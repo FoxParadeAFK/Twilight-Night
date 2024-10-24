@@ -18,8 +18,6 @@ func Enter() -> void:
 func Update(_delta : float) -> void:
 	super.Update(_delta)
 
-	print(isAbilitiesDone)
-
 func PhysicsUpdate(_delta : float) -> void:
 	super.PhysicsUpdate(_delta)
 

@@ -10,6 +10,8 @@ func _init(_animationName : String, _player : Player, _playerData : PlayerData, 
 
 func Enter() -> void: 
 	super.Enter()
+	player.inAirState.StopCoyoteTImer()
+
 	player.inputManager.UseJumpInput()
 	player.inAirState.DecreaseAmountOfJumpsLeft()
 	player.SetVelocityY(-playerData.yJumpVelocity)
